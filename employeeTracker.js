@@ -64,7 +64,7 @@ function roles()
 
 function employees()
 {
-     inquirer.prompt(questions[16]).then((answer) =>{
+     inquirer.prompt(questions[7]).then((answer) =>{
           switch (answer.action)
           {
                case `View all employees`:
@@ -146,10 +146,10 @@ function selectContent(table)
                userPrompt = questions[2];
                break;
           case "employee_role":
-               userPrompt = questions[14];
+               userPrompt = questions[15];
                break;
           case "employee":
-               userPrompt = questions[15];
+               userPrompt = questions[16];
                break;
           default:
                console.log(`Error on thread identifier switch case before the inquirer.prompt at selectContent(${table})`);
@@ -229,7 +229,7 @@ function roleOptions()
 
 function employeeOptions()
 {
-     inquirer.prompt(questions[7]).then(answer =>{
+     inquirer.prompt(questions[8]).then(answer =>{
           switch(answer.action)
           {
                case "Add employee file":
@@ -300,10 +300,10 @@ function addContent(table)
                userPrompt = questions[4];
                break;
           case "employee_role":
-               userPrompt = questions[11];
+               userPrompt = questions[12];
                break;
           case "employee":
-               userPrompt = questions[8];
+               userPrompt = questions[9];
                break;
           default:
                console.log(`Error in thread identifier switch case before inquirer.prompt at addContent(${table}).`);
@@ -356,7 +356,7 @@ function editContent(table)
                userPrompt = questions[5];
                break;
           case "employee_role":
-               userPrompt = questions[12];
+               userPrompt = questions[13];
                break;
           case "employee":
                userPrompt = questions[10];
@@ -368,9 +368,14 @@ function editContent(table)
      inquirer.prompt(userPrompt).then((answer)=>{
           let query;
           let changes = answer.changes;
+          let previous = answer.previous;
           if(typeof(changes) == "string")
           {
                changes = `"${changes}"`;
+          }
+          if(typeof(previous) == "string");
+          {
+               previous = `"${previous}"`;
           }
           query = `UPDATE ${table} SET ${answer.changeWhat} = ${changes} WHERE ${answer.whereToChange} = ${answer.previous};`;
           connection.query(query, (err, res) =>{
@@ -403,10 +408,11 @@ function deleteContent(table)
                userPrompt = questions[6];
                break;
           case "employee_role":
-               userPrompt = questions[13];
+               userPrompt = questions[14];
                break;
           case "employee":
                userPrompt = questions[11];
+               break;
           default: 
                console.log(`Error in thread identifier switch case before inquirer.prompt at deleteContent().
 table = ${table}`);
@@ -429,8 +435,8 @@ table = ${table}`);
                     case "employee_role":
                          roleOptions();
                          break;
-                    case "empoyee":
-                         empoyeeOptions();
+                    case "employee":
+                         employeeOptions();
                          break;
                     default:
                          console.log(`Error in thread identifier switch case after inquierer.prompt in deleteContent().

@@ -51,21 +51,27 @@ const questions = [
           //5 - editContent(department)
           {
                type:"list",
-               name:"changeWhat",
-               message:"Edit department id or name",
-               choices: ["id","name"]
+               name:"whereToChange",
+               message:"Identify department by: ",
+               choices: ["id","department_name"]
           },
           {
                type:"input",
                name:"previous",
-               message:"Enter previous department entry"
+               message:"Identify: "
+          },
+          {
+               type:"list",
+               name:"changeWhat",
+               message:"Edit: ",
+               choices: ["id","department_name"]
           },
           {
                type:"input",
                name:"changes",
                message:"Enter new department information"
           }
-     ]
+     ],
      [
           //6 deleteContent(department);
           {
@@ -127,19 +133,25 @@ const questions = [
           //10 - editContent(employee)
           {
                type:"list",
-               name:"changeWhat",
-               message:"Edit employee: ",
+               name:"whereToChange",
+               message:"Identify employee by: ",
                choices: ["id","first_name","last_name","employee_role_id","manager_id"]
           },
           {
                type:"input",
                name:"previous",
-               message:"Enter previous employee entry"
+               message:"Identify: "
+          },
+          {
+               type:"list",
+               name:"changeWhat",
+               message:"Edit: ",
+               choices: ["id","first_name","last_name","employee_role_id"]
           },
           {
                type:"input",
                name:"changes",
-               message:"Enter new employee information"
+               message:"Enter new employee information: "
           }
      ],
      [
@@ -148,7 +160,7 @@ const questions = [
                type:"list",
                name:"whereToChange",
                message:"Identify employee deletion based on:",
-               choices: ["id","first_name","last_name"]
+               choices: ["employee_id","first_name","last_name"]
           },
           {
                type:"input",
